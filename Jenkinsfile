@@ -2,18 +2,18 @@ pipeline {
     agent any 
 
     stages {
-        stage('Build') { 
+        stage('Buildx') { 
             steps { 
                 sh 'ls -l' 
             }
         }
-        stage('Test'){
+        stage('Testx'){
             steps {
                 sh 'cd phpunit && ls -l'
                 junit 'reports/**/*.xml' 
             }
         }
-        stage('Deploy') {
+        stage('Deployx') {
             steps {
                 sh 'top'
             }
