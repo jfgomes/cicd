@@ -10,7 +10,7 @@ pipeline {
         stage('Testx'){
             steps {
                 sh 'cd phpunit && ls -l'
-                junit 'reports/**/*.xml' 
+                //junit 'reports/**/*.xml' 
             }
         }
         stage('Deployx') {
