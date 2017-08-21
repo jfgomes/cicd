@@ -1,0 +1,25 @@
+pipeline {
+    agent any 
+    stages {
+        stage('wakeup docker image') { 
+            steps { 
+                sh 'ls -la' 
+            }
+        }
+        stage('do unitests over docker image'){
+            steps {
+                sh 'ls -la'
+            }
+        }      
+        stage('send slack message over docker image') {
+            steps {
+                sh 'ls -la'
+            }
+        }
+        stage('deploy to dev') {
+            steps {
+                sh 'ls -la'
+            }
+        }
+    }
+}
