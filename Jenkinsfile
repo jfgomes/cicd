@@ -10,7 +10,8 @@ pipeline {
         stage('Testx'){
             steps {
                 sh 'cd phpunit && ls -l'
-                ${env.GIT_BRANCH}
+                 sh 'printenv'
+                //${env.GIT_BRANCH}
                 //sh 'echo $GIT_BRANCH'
                 //junit 'reports/**/*.xml' 
             }
