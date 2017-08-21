@@ -10,7 +10,7 @@ pipeline {
         stage('Testx'){
             steps {
                 sh 'cd phpunit && ls -l'
-                echo env.BRANCH_NAME
+                ${env.BRANCH} 
                 // sh 'printenv'
                 //${env.GIT_BRANCH}
                 //sh 'echo $GIT_BRANCH'
