@@ -1,6 +1,6 @@
 <?php
 
-class ShoppingCartTest extends \PHPUnit\Framework\TestCase {
+class ShoppingCartTest extends PHPUnit_Framework_TestCase {
 
     public function testTotalStub()
     {
