@@ -1,3 +1,5 @@
-"require-dev": {
-	"phake/phake": "2"
+{
+	"require-dev": {
+		"phake/phake": "2"
+	}
 }
