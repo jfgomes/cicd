@@ -9,7 +9,7 @@ pipeline {
         stage('Testx'){
             steps {
                 sh 'cd phpunit && ls -l'
-                sh(returnStdout: true, script: "git branch --contains ${commitId}")
+                sh 'git branch'
                 // sh 'printenv'
                 //${env.GIT_BRANCH}
                 //sh 'echo $GIT_BRANCH'
