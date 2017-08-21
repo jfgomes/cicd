@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Deployx') {
             steps {
-                sh 'top'
+                sh 'ls -la'
             }
         }
     }
