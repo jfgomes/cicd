@@ -1,9 +1,9 @@
 version: "2"
 services:
-  as:
+  dummyapp:
     build: ./image
     ports:
-      - "80:80"
+      - "81:81"
       - "443:443"
     volumes:
       - ./src:/var/www/dummyapp
