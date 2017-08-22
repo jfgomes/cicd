@@ -1,0 +1,16 @@
+version: "2"
+options:
+  verbose: true
+  compose-file-path: 'docker-compose.yml'
+syncs:
+  as-sync:
+    src: './src/'
+    sync_host_ip: 'auto'
+    sync_host_port: 10872
+    sync_strategy: 'rsync'
+    sync_args: '-v --copy-links --hard-links'
+    sync_user: 'www-data'
+    sync_userid: '33'
+    sync_excludes: ['.idea/', '.git/']
+    sync_excludes_type: ['Name']
+

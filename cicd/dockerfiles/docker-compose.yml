@@ -1,0 +1,16 @@
+version: "2"
+services:
+  as:
+    build: ./image
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src:/var/www/dummyapp
+    networks:
+      - dummyapp_default
+
+networks:
+  dummyapp_default:
+    driver: bridge
+
