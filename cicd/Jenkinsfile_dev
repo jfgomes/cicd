@@ -12,12 +12,12 @@ pipeline {
         }
         stage('do unitests'){
             steps {
-                sh 'ls -la'
+                sh 'echo "run unit tests"'
             }
         }      
         stage('send slack report message') {
             steps {
-                sh 'ls -la'
+                sh 'echo "send message to slack"'
             }
         }
     }
