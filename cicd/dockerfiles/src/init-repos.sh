@@ -16,4 +16,4 @@ declare -r gitrepo=git@github.com:jfgomes/cicd.git
         	#git submodule init && git submodule update
         else 
                 echo "directory $repo already exists...Skipping"
-        fi
+fi
