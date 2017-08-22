@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('mount dummyapp image') { 
             steps { 
-                sh 'ls -la' 
-                sh 'cd cicd/docker/src && ./init-repos.sh && ls -la'
+                sh 'ls -la'
+                sh 'whoami'
+                sh 'cd cicd/docker/src && sudo ./init-repos.sh && ls -la'
                 
             }
         }
