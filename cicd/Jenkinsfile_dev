@@ -7,7 +7,7 @@ pipeline {
                 sh 'rm cicd/docker/src/dummyapp -Rf'
                 sh 'cd cicd/docker/src && sudo chmod 777 init-repos.sh && ./init-repos.sh && ls -la'
                 sh 'if [ $(sudo docker ps -a -q | wc -l) -eq 0 ]; then echo "No containers running!"; else sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) ; fi'
-                sh 'cd cicd/docker && sudo docker-compose up'
+                sh 'cd cicd/docker && sudo docker-compose up > /dev/null '
             }
         }
         stage('do unitests'){
