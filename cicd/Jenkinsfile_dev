@@ -4,6 +4,8 @@ pipeline {
         stage('wakeup docker image') { 
             steps { 
                 sh 'ls -la' 
+                sh 'cd cicd/docker/src'
+                sh 'ls-la'
             }
         }
         stage('do unitests over docker image'){
