@@ -1,4 +1,4 @@
-# Dockerfile for Apache+Php7.1 DEV environment of AtlaStock
+# Dockerfile for Dummyapp
 FROM php:7.1-apache
 
 MAINTAINER José Gomes <jose.gomes@olx.com>
