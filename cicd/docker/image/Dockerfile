@@ -58,7 +58,7 @@ RUN a2dissite 000-default
 RUN a2enmod rewrite
 
 # Expose ports
-#EXPOSE 80
+EXPOSE 80
 EXPOSE 81
 EXPOSE 443
 
