@@ -61,6 +61,7 @@ RUN a2enmod rewrite
 EXPOSE 80
 EXPOSE 81
 EXPOSE 443
+EXPOSE 8888
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
