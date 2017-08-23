@@ -3,7 +3,7 @@ class Counter
 {
     private $current = 0;
 
-    private $increment = 1;
+    private $increment = 3;
 
     public function next()
     {
