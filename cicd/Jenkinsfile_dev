@@ -13,16 +13,11 @@ pipeline {
                 }
             }
             stage('do unitests'){
-            
-                try { 
+
                     steps {
                         sh 'cd phpunit && composer update && phpunit'
                     }                    
-                }catch(e){
-                     throw e        
-                }finally{
-                    notifyBuild(currentBuild.result)
-                }
+
             }      
             stage('send slack report message') {
                 steps {
@@ -31,6 +26,12 @@ pipeline {
             }
             
 
+    }
+    
+    post { 
+        failure { 
+            echo 'Failure failure failure'
+        }
     }
 }
 
