@@ -1,6 +1,6 @@
 <?php
 
-class counterTest extends PHPUnit_Framework_TestCase {
+class counterTest extends PHPUnit/Framework/TestCase {
 
     public function testNext()
     {
