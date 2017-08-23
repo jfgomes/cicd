@@ -1,6 +1,6 @@
 <?php
 
-class ShoppingCartTest extends PHPUnit_Framework_TestCase {
+class ShoppingCartTest extends PHPUnit\Framework\TestCase {
 
     public function testTotalStub()
     {
@@ -44,24 +44,4 @@ class ShoppingCartTest extends PHPUnit_Framework_TestCase {
 
         $this->assertEquals(2, count($shoppingCart->items()));
     }
-
-    public function testAddAttachLogStub()
-    {
-        $shoppingCart = new ShoppingCart();
-
-        // Create Log
-        $logger = $this->prophesize(Logger::class);
-
-        // ?????
-        $shoppingCart->attachLogger($logger->reveal());
-
-        // Add item
-        $shoppingCartItem = $this->prophesize(ShoppingCartItem::class);
-        $shoppingCartItem->price()->willReturn(1);
-
-        $shoppingCart->addItem($shoppingCartItem->reveal());
-
-        // Verify log:
-    }
-
 }

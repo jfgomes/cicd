@@ -1,6 +1,6 @@
 <?php
 
-class counterTest extends PHPUnit_Framework_TestCase {
+class counterTest extends PHPUnit\Framework\TestCase {
 
     public function testNext()
     {
@@ -12,15 +12,6 @@ class counterTest extends PHPUnit_Framework_TestCase {
     {
         $counter = new Counter();
         $this->assertNotTrue(2, $counter->next());
-    }
-
-
-    public function testSetIncrementException(){
-
-        //$this->expectException(InvalidArgumentException::class);
-
-        $counter = new Counter();
-        $counter->setIncrement("string");
     }
 
 }
