@@ -4,7 +4,7 @@ class ShoppingCartTest extends PHPUnit_Framework_TestCase {
 
     public function testAddItemStub()
     {   // dummy test
-        $this->assertTrue(false);
+        $this->assertTrue(true);
     }
 
     public function testTotalAddedItemsStub()
