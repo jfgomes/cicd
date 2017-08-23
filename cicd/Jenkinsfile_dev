@@ -12,7 +12,7 @@ pipeline {
         }
         stage('do unitests'){
             steps {
-                sh 'cd phpunit && phpunit'
+                sh 'cd phpunit && composer update && phpunit'
             }
         }      
         stage('send slack report message') {
