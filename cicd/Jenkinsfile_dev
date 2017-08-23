@@ -1,33 +1,33 @@
 pipeline {
-
-try { 
     agent any 
     stages {
-        stage('mount dummyapp image') { 
-            steps { 
-                sh 'ls -la'
-                sh 'rm cicd/docker/src/dummyapp -Rf'
-                sh 'cd cicd/docker/src && sudo chmod 777 init-repos.sh && ./init-repos.sh && ls -la'
-                sh 'if [ $(sudo docker ps -a -q | wc -l) -eq 0 ]; then echo "No containers running!"; else sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) ; fi'
-                sh 'cd cicd/docker && sudo docker-compose build  && sudo docker-compose up -d'
-            }
-        }
-        stage('do unitests'){
-            steps {
-                sh 'cd phpunit && composer update && phpunit'
-            }
-        }      
-        stage('send slack report message') {
-            steps {
-                notifyBuild(currentBuild.result)
-            }
-        }
-    }
     
-    }catch(e){
-         throw e        
-    }finally{
-        notifyBuild(currentBuild.result)
+        try { 
+            stage('mount dummyapp image') { 
+                steps { 
+                    sh 'ls -la'
+                    sh 'rm cicd/docker/src/dummyapp -Rf'
+                    sh 'cd cicd/docker/src && sudo chmod 777 init-repos.sh && ./init-repos.sh && ls -la'
+                    sh 'if [ $(sudo docker ps -a -q | wc -l) -eq 0 ]; then echo "No containers running!"; else sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) ; fi'
+                    sh 'cd cicd/docker && sudo docker-compose build  && sudo docker-compose up -d'
+                }
+            }
+            stage('do unitests'){
+                steps {
+                    sh 'cd phpunit && composer update && phpunit'
+                }
+            }      
+            stage('send slack report message') {
+                steps {
+                    notifyBuild(currentBuild.result)
+                }
+            }
+            
+        }catch(e){
+             throw e        
+        }finally{
+            notifyBuild(currentBuild.result)
+        }
     }
 }
 
