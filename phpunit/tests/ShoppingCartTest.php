@@ -2,15 +2,6 @@
 
 class ShoppingCartTest extends PHPUnit_Framework_TestCase {
 
-    public function testTotalStub()
-    {
-        $stub = $this->createMock(ShoppingCart::class);
-        $stub->method('total')
-            ->willReturn(1);
-
-        $this->assertEquals(1, $stub->total());
-    }
-
     public function testAddItemStub()
     {
         $shoppingCartItem = $this->prophesize(ShoppingCartItem::class);
