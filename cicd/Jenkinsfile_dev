@@ -1,4 +1,6 @@
 pipeline {
+
+try { 
     agent any 
     stages {
         stage('mount dummyapp image') { 
@@ -20,6 +22,12 @@ pipeline {
                 notifyBuild(currentBuild.result)
             }
         }
+    }
+    
+    }catch(e){
+         throw e        
+    }finally{
+        notifyBuild(currentBuild.result)
     }
 }
 
