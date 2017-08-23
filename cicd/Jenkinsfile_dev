@@ -12,7 +12,7 @@ pipeline {
         }
         stage('do unitests'){
             steps {
-                sh 'echo "run unit tests"'
+                sh 'cd phpunit && phpunit'
             }
         }      
         stage('send slack report message') {
