@@ -2,7 +2,7 @@ pipeline {
     agent any 
     stages {
     
-        try { 
+        
             stage('mount dummyapp image') { 
                 steps { 
                     sh 'ls -la'
@@ -13,8 +13,15 @@ pipeline {
                 }
             }
             stage('do unitests'){
-                steps {
-                    sh 'cd phpunit && composer update && phpunit'
+            
+                try { 
+                    steps {
+                        sh 'cd phpunit && composer update && phpunit'
+                    }                    
+                }catch(e){
+                     throw e        
+                }finally{
+                    notifyBuild(currentBuild.result)
                 }
             }      
             stage('send slack report message') {
@@ -23,11 +30,7 @@ pipeline {
                 }
             }
             
-        }catch(e){
-             throw e        
-        }finally{
-            notifyBuild(currentBuild.result)
-        }
+
     }
 }
 
