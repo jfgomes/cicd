@@ -1,24 +1,80 @@
-pipeline {
-    agent any 
-    stages {
-        stage('mount dummyapp image') { 
-            steps { 
-                sh 'ls -la'
-                sh 'rm cicd/docker/src/dummyapp -Rf'
-                sh 'cd cicd/docker/src && sudo chmod 777 init-repos.sh && ./init-repos.sh && ls -la'
-                sh 'if [ $(sudo docker ps -a -q | wc -l) -eq 0 ]; then echo "No containers running!"; else sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) ; fi'
-                sh 'cd cicd/docker && sudo docker-compose build  && sudo docker-compose up -d'
-            }
-        }
-        stage('do unitests'){
-            steps {
-                sh 'cd phpunit && composer update && phpunit'
-            }
-        }      
-        stage('send slack report message') {
-            steps {
-                sh 'echo "send message to slack"'
-            }
-        }
-    }
+#!/usr/bin/env groovy 
+node {
+   try {
+       stage 'Clean Workspace'
+       deleteDir()
+       sh 'ls -lah'   
+
+       stage 'Checkout'
+       // Checkout code from repository
+       checkout scm
+       def environment  = docker.build 'cloudbees-node'
+   
+      stage 'Read ci.properties'
+      def props = readProperties  file: 'ci.properties'
+      println props
+      println props['userSlackChannel']   
+      
+      
+      
+      stage 'Build Docker Instance'
+            //sh 'ls -la'
+            //sh 'rm cicd/docker/src/dummyapp -Rf'
+            //sh 'cd cicd/docker/src && sudo chmod 777 init-repos.sh && ./init-repos.sh'
+            //sh 'if [ $(sudo docker ps -a -q | wc -l) -eq 0 ]; then echo "No containers running!"; else sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) ; fi'
+            //sh 'cd cicd/docker && sudo docker-compose build && sudo docker-compose up -d'
+      stage 'Run Unit Tests'
+	        sh 'cd phpunit && composer update && phpunit'
+      stage 'Run Functional Tests'
+	        sh 'echo "RUN FUNCTIONAL TESTS"'
+      stage 'Notify Slack'
+      
+   } catch (e) {
+    // Set the build to failed
+    currentBuild.result = "FAILED"
+    throw e
+  } finally {
+    // Always send notifications
+    //currentBuild.result = "Error"  
+      
+    notifyBuild(currentBuild.result, getSlackUserNameFromGitCommit())
+  }
+}
+
+def getSlackUserNameFromGitCommit(){
+   
+   def gitUserEmail = sh(returnStdout: true, script: 'git show -s --pretty=%ae').trim()
+   
+   if(gitUserEmail==''){
+      return null
+   }
+   return '@' + gitUserEmail.split('@')[0]
+}
+
+def notifyBuild(String buildStatus = 'STARTED', String channel) {
+  // build status of null means successful
+  buildStatus =  buildStatus ?: 'SUCCESSFUL'
+
+  // Default values
+  def colorName = 'RED'
+  def colorCode = '#FF0000'
+  def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' ${env.GIT_AUTHOR_EMAIL}"
+  def summary = "${subject} (${env.BUILD_URL})"
+
+  // Override default values based on build status
+  if (buildStatus == 'STARTED') {
+    color = 'YELLOW'
+    colorCode = '#FFFF00'
+  } else if (buildStatus == 'SUCCESSFUL') {
+    color = 'GREEN'
+    colorCode = '#00FF00'
+  } else {
+    color = 'RED'
+    colorCode = '#FF0000'
+  }
+   
+  slackSend (color: colorCode, message: channel)
+   
+  // Send notifications
+  slackSend (color: colorCode, message: summary, channel: channel)
 }
