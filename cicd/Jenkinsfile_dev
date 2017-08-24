@@ -24,6 +24,11 @@ node {
             //sh 'if [ $(sudo docker ps -a -q | wc -l) -eq 0 ]; then echo "No containers running!"; else sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) ; fi'
             //sh 'cd cicd/docker && sudo docker-compose build && sudo docker-compose up -d'
       stage 'Run Unit Tests'
+	   
+	     app.inside {
+        sh 'ls -l'
+    }
+
 	     //   sh 'cd phpunit && composer update && phpunit'
       stage 'Run Functional Tests'
 	    //    sh 'echo "RUN FUNCTIONAL TESTS"'
