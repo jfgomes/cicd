@@ -18,22 +18,17 @@ RUN apt-get update && apt-get install -y \
 	libxml2-dev \
 	libmemcached-dev
 
-# Copy vhost file
-#COPY dummyapp.conf /etc/apache2/sites-available/dummyapp.conf
+ARG DOCKER_GID=993
 
-# Enable atlastock sites
-#RUN a2ensite dummyapp
+RUN groupadd -g ${DOCKER_GID} docker \
+  && curl -sSL https://get.docker.com/ | sh \
+  && apt-get -q autoremove \
+  && apt-get -q clean -y \
+  && rm -rf /var/lib/apt/lists/* /var/cache/apt/*.bin 
 
-# Disable default site
-#RUN a2dissite 000-default
+RUN useradd -m -d /home/jenkins -s /bin/sh jenkins \
+  && usermod -aG docker jenkins
 
-# Enable module Rewrite
-#RUN a2enmod rewrite
-
-# Expose ports
-#EXPOSE 80
-#EXPOSE 81
-#EXPOSE 443
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
