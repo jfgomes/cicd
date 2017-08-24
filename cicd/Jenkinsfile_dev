@@ -8,7 +8,7 @@ node {
        stage 'Checkout'
        // Checkout code from repository
        checkout scm
-       def environment  = docker.build 'cloudbees-node'
+       def environment  = docker.build
    
       stage 'Read ci.properties'
       def props = readProperties  file: 'ci.properties'
