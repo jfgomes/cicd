@@ -62,5 +62,8 @@ EXPOSE 80
 EXPOSE 81
 EXPOSE 443
 
+RUN useradd jenkins --shell /bin/bash --create-home
+USER jenkins
+
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
