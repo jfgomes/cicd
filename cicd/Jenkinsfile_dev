@@ -8,7 +8,7 @@ node {
        stage 'Checkout'
        // Checkout code from repository
        checkout scm
-       def environment  = docker.build
+       //def environment  = docker.build
    
       stage 'Read ci.properties'
       def props = readProperties  file: 'ci.properties'
@@ -25,9 +25,9 @@ node {
             //sh 'cd cicd/docker && sudo docker-compose build && sudo docker-compose up -d'
       stage 'Run Unit Tests'
 	   
-	     app.inside {
-        sh 'ls -l'
-    }
+  // app.inside {
+    //    sh 'ls -l'
+    //}
 
 	     //   sh 'cd phpunit && composer update && phpunit'
       stage 'Run Functional Tests'
