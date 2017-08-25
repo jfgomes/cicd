@@ -11,9 +11,9 @@ node {
 
 	    def myEnv = docker.build 'dev-environment:snapshot'
 		  myEnv.inside {
-		    sh 'php -v'
+		    sh 'pwd'
 		    sh 'rm cicd/docker/src/dummyapp -Rf'
-                    sh 'cd cicd/docker/src && chmod 777 init-repos.sh && ./init-repos.sh'
+                    //sh 'cd cicd/docker/src && chmod 777 init-repos.sh && ./init-repos.sh'
 		  }
 	   
 	   sh 'php -v'
