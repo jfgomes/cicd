@@ -8,7 +8,7 @@ RUN mkdir /var/www/dummyapp
 
 # Create the volume
 #VOLUME /var/www/dummyapp
-COPY . /app
+COPY . /var/www/dummyapp
 
 # Install Composer and make it available in the PATH
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
