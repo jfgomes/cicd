@@ -8,14 +8,14 @@ node {
        stage 'Checkout'
        // Checkout code from repository
        checkout scm
-
-	    sh 'ls -la'
+	   
             sh 'rm cicd/docker/src/dummyapp -Rf'
             sh 'cd cicd/docker/src && sudo chmod 777 init-repos.sh && ./init-repos.sh'
 	   
 	    def myEnv = docker.build 'dev-environment:snapshot'
 		  myEnv.inside {
 		    sh 'ls -l'
+			  
 		    //sh 'rm cicd/docker/src/dummyapp -Rf'
 			//  sh 'cd /etc/ssh/ssh_config && ls -l'
                     //sh 'cd cicd/docker/src && chmod 777 init-repos.sh && ./init-repos.sh'
@@ -35,6 +35,12 @@ node {
            // sh 'if [ $(sudo docker ps -a -q | wc -l) -eq 0 ]; then echo "No containers running!"; else sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) ; fi'
             //sh 'cd cicd/docker && sudo docker-compose build && sudo docker-compose up -d'
       stage 'Run Unit Tests'
+	   
+	   	  myEnv.inside {
+		  
+			   sh 'cd phpunit && composer update && phpunit'
+	 
+		  }
 	   
   // app.inside {
     //    sh 'ls -l'
