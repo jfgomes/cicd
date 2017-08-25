@@ -28,7 +28,11 @@ RUN groupadd -g ${DOCKER_GID} docker \
 
 RUN useradd -m -d /home/jenkins -s /bin/sh jenkins \
   && usermod -aG docker jenkins
-
+  
+RUN mkdir -p /jenkins/.ssh
+ADD id_rsa /jenkins/.ssh/id_rsa
+RUN chmod 700 /jenkins/.ssh/id_rsa 
+RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
