@@ -31,9 +31,9 @@ RUN useradd -m -d /home/jenkins -s /bin/sh jenkins \
   
 #cd ~/.ssh/
 #RUN mkdir -p /jenkins/.ssh
-ADD id_rsa ~/.ssh
-RUN chmod 700 ~/.ssh/id_rsa 
-RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/jenkins/.ssh/config
+#ADD id_rsa ~/.ssh
+#RUN chmod 700 ~/.ssh/id_rsa 
+#RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/jenkins/.ssh/config
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
