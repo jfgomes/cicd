@@ -38,7 +38,7 @@ node {
 	   
 	   	  myEnv.inside {
 		  
-			   sh 'cd phpunit && composer update && phpunit'
+			  // sh 'cd phpunit && composer update && phpunit'
 	 
 		  }
 	   
