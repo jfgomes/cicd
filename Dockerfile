@@ -4,7 +4,7 @@ FROM php:7.1-apache
 MAINTAINER José Gomes <jose.gomes@olx.com>
 
 # Create folder to hold projects
-#RUN mkdir /var/www/dummyapp
+RUN mkdir /var/www/dummyapp
 
 # Create the volume
 #VOLUME /var/www/dummyapp
