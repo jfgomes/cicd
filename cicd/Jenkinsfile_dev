@@ -13,7 +13,7 @@ node {
 		  myEnv.inside {
 		    sh 'ls -l'
 		    sh 'rm cicd/docker/src/dummyapp -Rf'
-                    sh 'cd cicd/docker/src && chmod 777 init-repos.sh && ./init-repos.sh'
+                    //sh 'cd cicd/docker/src && chmod 777 init-repos.sh && ./init-repos.sh'
 		  }
 	   
 	   sh 'php -v'
