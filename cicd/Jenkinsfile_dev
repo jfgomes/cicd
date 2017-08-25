@@ -37,7 +37,7 @@ node {
       stage 'Run Unit Tests'
 	   
 	   	  myEnv.inside {
-		  
+		   sh 'pwd'
 			  // sh 'cd phpunit && composer update && phpunit'
 	 
 		  }
