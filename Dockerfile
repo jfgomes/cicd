@@ -29,6 +29,7 @@ RUN groupadd -g ${DOCKER_GID} docker \
 RUN useradd -m -d /home/jenkins -s /bin/sh jenkins \
   && usermod -aG docker jenkins
   
+RUN  echo "IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config
 #cd ~/.ssh/
 #RUN mkdir -p /jenkins/.ssh
 #ADD id_rsa ~/.ssh
