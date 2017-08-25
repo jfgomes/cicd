@@ -42,7 +42,7 @@ node {
     // Always send notifications
     //currentBuild.result = "Error"  
       
-    notifyBuild(currentBuild.result, getSlackUserNameFromGitCommit())
+   // notifyBuild(currentBuild.result, getSlackUserNameFromGitCommit())
   }
 }
 
