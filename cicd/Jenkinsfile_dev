@@ -12,7 +12,7 @@ node {
             sh 'rm cicd/docker/src/dummyapp -Rf'
             sh 'cd cicd/docker/src && sudo chmod 777 init-repos.sh && ./init-repos.sh'
 	   
-	    def myEnv = docker.build 'dev-environment:snapshot'
+	    def myEnv = docker.build -f phpunit/ // 'dev-environment:snapshot'
 		  myEnv.inside {
 		    sh 'touch "cenas_lindas"'
 			   sh 'php -v'
