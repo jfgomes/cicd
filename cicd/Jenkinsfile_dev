@@ -11,7 +11,7 @@ node {
 
 	    def myEnv = docker.build 'dev-environment:snapshot'
 		  myEnv.inside {
-		    sh 'cd ~/.ssh/ && pwd && ls -l'
+		    sh 'ls -l'
 		    //sh 'rm cicd/docker/src/dummyapp -Rf'
                     //sh 'cd cicd/docker/src && chmod 777 init-repos.sh && ./init-repos.sh'
 		  }
