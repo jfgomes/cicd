@@ -10,9 +10,11 @@ node {
        checkout scm
 
 	    def myEnv = docker.build 'dev-environment:snapshot'
-  myEnv.inside {
-    sh 'ls -l'
-  }
+		  myEnv.inside {
+		    sh 'ls -l'
+		  }
+	   
+	   sh 'ls -l'
    
       stage 'Read ci.properties'
       def props = readProperties  file: 'ci.properties'
