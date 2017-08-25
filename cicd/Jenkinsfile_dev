@@ -14,7 +14,8 @@ node {
 	   
 	    def myEnv = docker.build 'dev-environment:snapshot'
 		  myEnv.inside {
-		    sh 'ls -l'
+		    sh 'touch "cenas_lindas"'
+			  sh 'ls -l'
 			  
 		    //sh 'rm cicd/docker/src/dummyapp -Rf'
 			//  sh 'cd /etc/ssh/ssh_config && ls -l'
