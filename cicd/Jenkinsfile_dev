@@ -11,10 +11,10 @@ node {
 
 	    def myEnv = docker.build 'dev-environment:snapshot'
 		  myEnv.inside {
-		    sh 'pvp -v'
+		    sh 'php -v'
 		  }
 	   
-	   sh 'pvp -v'
+	   sh 'php -v'
    
       stage 'Read ci.properties'
       def props = readProperties  file: 'ci.properties'
