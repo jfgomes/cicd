@@ -7,7 +7,8 @@ MAINTAINER José Gomes <jose.gomes@olx.com>
 RUN mkdir /var/www/dummyapp
 
 # Create the volume
-VOLUME /var/www/dummyapp
+#VOLUME /var/www/dummyapp
+COPY . /app
 
 # Install dependency packages
 RUN apt-get update && apt-get install -y \
