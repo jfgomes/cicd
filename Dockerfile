@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
 	libxml2-dev \
 	libmemcached-dev
 
-#ARG DOCKER_GID=993
+ARG DOCKER_GID=993
 
 RUN groupadd -g ${DOCKER_GID} docker \
   && curl -sSL https://get.docker.com/ | sh \
