@@ -8,7 +8,11 @@ node {
        stage 'Checkout'
        // Checkout code from repository
        checkout scm
-      def environment  = docker.build
+
+	    def myEnv = docker.build 'my-environment:snapshot'
+  myEnv.inside {
+    sh 'make test'
+  }
    
       stage 'Read ci.properties'
       def props = readProperties  file: 'ci.properties'
