@@ -11,7 +11,7 @@ node {
 
 	    def myEnv = docker.build 'my-environment:snapshot'
   myEnv.inside {
-    sh 'make test'
+    sh 'ls -l'
   }
    
       stage 'Read ci.properties'
