@@ -13,11 +13,13 @@ node {
       stage 'Run Unit Tests'	   
 	   	  myEnv.inside {
 			  sh 'php -v'
+			   sh 'ls -l'
 			  //sh 'cd phpunit  && phpunit'
-	   	        sh 'cd phpunit && phpunit --log-junit "reports/unitreport.xml" --coverage-html "reports/coverage" --coverage-clover "reports/coverage/coverage.xml" tests/'
-			junit '**/target/*.xml'
+	   	        //sh 'cd phpunit && phpunit --log-junit "reports/unitreport.xml" --coverage-html "reports/coverage" --coverage-clover "reports/coverage/coverage.xml" tests/'
+			//junit '**/target/*.xml'
 		  }
 	        sh 'php -v'
+	   sh 'ls -l'
 	   sh 'cd phpunit/reports && ls -l'
 	        //junit "phpunit/reports/coverage/coverage.xml"
 	   	// sh 'cd phpunit && composer update && phpunit'
