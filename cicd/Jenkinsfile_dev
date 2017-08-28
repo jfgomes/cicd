@@ -15,7 +15,7 @@ node {
 			  //sh 'php -v'
 			  //sh 'cd phpunit  && phpunit'
 	   	        sh 'cd phpunit && phpunit --log-junit "reports/unitreport.xml" --coverage-html "reports/coverage" --coverage-clover "reports/coverage/coverage.xml" tests/'
-			//sh 'junit "**/coverage/*.xml"'
+			sh 'junit "**/coverage/*.xml"'
 		  }
 	   	// sh 'cd phpunit && composer update && phpunit'
 	   	//sh 'cd phpunit && composer update && phpunit --log-junit "reports/unitreport.xml" --coverage-html "reports/coverage" --coverage-clover "reports/coverage/coverage.xml" tests/'
