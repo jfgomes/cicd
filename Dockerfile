@@ -1,5 +1,5 @@
 # Dockerfile for Dummyapp
-FROM php:5.6
+FROM php:7.1-apache
 
 MAINTAINER José Gomes <jose.gomes@olx.com>
 
