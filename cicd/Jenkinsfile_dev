@@ -3,55 +3,19 @@ node {
    try {
        stage 'Clean Workspace'
        deleteDir()
-       sh 'ls -lah'   
-
        stage 'Checkout'
-       // Checkout code from repository
        checkout scm
-	   
+       stage 'Handle Dependencies'   
             sh 'rm cicd/docker/src/dummyapp -Rf'
-            sh 'cd cicd/docker/src && sudo chmod 777 init-repos.sh && ./init-repos.sh'
-	   
-	    def myEnv = docker.build 'dev-environment:snapshot'
-		  myEnv.inside {
-		    sh 'touch "cenas_lindas"'
-			   sh 'php -v'
-			  sh 'ls -l'
-			  
-		    //sh 'rm cicd/docker/src/dummyapp -Rf'
-			//  sh 'cd /etc/ssh/ssh_config && ls -l'
-                    //sh 'cd cicd/docker/src && chmod 777 init-repos.sh && ./init-repos.sh'
-		  }
-	   
-	   sh 'php -v'
-	   sh 'ls -l'
-   
-      //stage 'Read ci.properties'
-      //def props = readProperties  file: 'ci.properties'
-      //println props
-      //println props['userSlackChannel']   
-      
-      
-      
+            sh 'cd cicd/docker/src && sudo chmod 777 init-repos.sh && ./init-repos.sh'	      
       stage 'Build Docker Instance'
-
-           // sh 'if [ $(sudo docker ps -a -q | wc -l) -eq 0 ]; then echo "No containers running!"; else sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) ; fi'
-            //sh 'cd cicd/docker && sudo docker-compose build && sudo docker-compose up -d'
-      stage 'Run Unit Tests'
-	   
+	   def myEnv = docker.build 'dev-environment:snapshot'
+      stage 'Run Unit Tests'	   
 	   	  myEnv.inside {
-		   //sh 'pwd'
-			  // sh 'cd phpunit && composer update && phpunit'
-	 
+			sh 'php -v'
 		  }
-	   
-  // app.inside {
-    //    sh 'ls -l'
-    //}
-
-	     //   sh 'cd phpunit && composer update && phpunit'
       stage 'Run Functional Tests'
-	    //    sh 'echo "RUN FUNCTIONAL TESTS"'
+	      sh 'echo "RUN FUNCTIONAL TESTS"'
       stage 'Notify Slack'
       
    } catch (e) {
