@@ -22,6 +22,15 @@ RUN apt-get update && apt-get install -y \
 	libxml2-dev \
 	libmemcached-dev
 
+RUN pecl install xdebug-2.5.0
+ENV XDEBUG_EXT zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20160303/xdebug.so RUN alias php_xdebug="php -d$XDEBUG_EXT vendor/bin/phpunit"
+
+# Install PHPUnit 
+RUN curl -OL https://phar.phpunit.de/phpunit.phar \
+	&& chmod 755 phpunit.phar \
+	&& mv phpunit.phar /usr/local/bin/ \
+	&& ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
+	
 # Copy vhost file
 #COPY dummyapp.conf /etc/apache2/sites-available/dummyapp.conf
 
