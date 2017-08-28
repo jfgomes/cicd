@@ -1,6 +1,6 @@
 <?php
 
-class ShoppingCartTest extends PHPUnit_Framework_TestCase {
+class ShoppingCartTest extends \PHPUnit\Framework\TestCase {
 
     public function testAddItemStub()
     {   // dummy test
