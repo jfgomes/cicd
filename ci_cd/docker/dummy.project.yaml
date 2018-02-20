@@ -1,0 +1,9 @@
+version: '2'
+services:
+  dummy:
+    image: webdevops/php-apache-dev
+    hostname: dummy
+    ports:
+    - "80"
+    volumes:
+    - ${HOST_VOLUME}:/var/www
