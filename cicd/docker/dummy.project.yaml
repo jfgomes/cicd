@@ -1,0 +1,9 @@
+version: '2'
+services:
+  atlastock:
+    image: nimmis/apache-php7
+    hostname: dummy
+    ports:
+    - "80"
+    volumes:
+    - ${HOST_VOLUME}:/var/www
