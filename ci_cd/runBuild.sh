@@ -12,9 +12,6 @@ cd /var/www && php -r "unlink('composer-setup.php');"
 cd /var/www && chmod 777 composer.phar
 cd /var/www && php composer.phar update
 
-wget https://phar.phpunit.de/phpunit-6.2.phar
-chmod +x phpunit-6.2.phar
-mv phpunit-6.2.phar /usr/local/bin/phpunit
 phpunit --version
 
 exit 0
