@@ -1,7 +1,7 @@
 version: '2'
 services:
   atlastock:
-    image: nimmis/apache-php7
+    image: docker pull webdevops/php-apache-dev
     hostname: dummy
     ports:
     - "80"
