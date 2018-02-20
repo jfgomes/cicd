@@ -2,7 +2,7 @@
 
 node('slave-atlastock-ua') {
   sharedPipeline {
-    propertiesFilePath = 'jaws/ci_cd/ci.properties' 
+    propertiesFilePath = 'ci_cd/ci.properties' 
     debugMode          = false
   }
 }
