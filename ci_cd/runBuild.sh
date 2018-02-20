@@ -4,6 +4,7 @@ apt-get update
 yes | apt-get install php-soap
 yes | apt-get install php-pear php5-dev
 yes | pecl install xdebug
+yes | apt-get install php5-dom
 pecl install xdebug-beta && docker-php-ext-enable xdebug    
 cd /var/www && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 cd /var/www && php composer-setup.php
