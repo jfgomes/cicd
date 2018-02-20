@@ -1,8 +1,0 @@
-@Library('cicd_helpers') _
-
-node('slave-atlastock-ua') {
-  sharedPipeline {
-    propertiesFilePath = 'ci_cd/ci.properties' 
-    debugMode          = true
-  }
-}
