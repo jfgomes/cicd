@@ -1,5 +1,6 @@
 #!/bin/bash
 set x
+apt-get update
 yes | apt-get install php-soap
 yes | apt-get install php-pear php5-dev
 yes | pecl install xdebug
